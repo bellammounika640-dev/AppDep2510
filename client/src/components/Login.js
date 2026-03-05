@@ -23,7 +23,7 @@ function Login() {
             method:"post",
             body:dataToSend,
         }
-        let JSONData = await fetch("http://localhost:1213/validateToken",reqOption)
+        let JSONData = await fetch("/validateToken",reqOption)
         let JSOData =await JSONData.json()
         console.log(JSOData)
         alert(JSOData.message)
@@ -47,7 +47,7 @@ function Login() {
             method:"post",
             body:dataToSend,
         }
-        let JSONData = await fetch("http://localhost:1213/login",reqOption)
+        let JSONData = await fetch("/login",reqOption)
         let JSOData =await JSONData.json()
         console.log(JSOData)
         alert(JSOData.message)

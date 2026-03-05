@@ -13,7 +13,7 @@ function Messages() {
       <h2>Welcome to Messages</h2>
       <h2>Name : {userDetails.firstName} {userDetails.lastName}</h2>
       <h2>Age : {userDetails.age}</h2>
-      <img src={`http://localhost:1213/${userDetails.profilePic}`}></img>
+      <img src={`/${userDetails.profilePic}`}></img>
     </div>
   )
 }

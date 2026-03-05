@@ -3,8 +3,10 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const jsonwebtoken = require("jsonwebtoken");
-const bcrypt = require("bcrypt")
-
+const bcrypt = require("bcrypt");
+const dotenv =  require("dotenv");
+dotenv.config();
+const path = require("path");
 let app = express();
 app.use(cors());
 
@@ -160,9 +162,14 @@ res.json({status:"Failed" , message:"User does not deleted"})
 
 
 
-app.listen(1213,()=>{
-    console.log("1213 port is running on server")
+app.listen(process.env.PORT,()=>{
+    console.log(`${process.env.PORT} port is running on server`)
 })
+app.use(express.static(path.join(__dirname,"client/build")));
+
+app.get(/.*/,(req,res)=>{
+    res.sendFile(path.join(__dirname,"client/build","index.html"));
+});
 
 
 let userSchema = mongoose.Schema({
@@ -181,7 +188,7 @@ let user = mongoose.model("users",userSchema,"userJWT")
 
 let connectToMDB = async ()=>{
     try{
-        await mongoose.connect("mongodb://localhost:27017/mernbatch");
+        await mongoose.connect(process.env.MDBURL);
         console.log("Sucessfully Connect to MongoDB")
     
     }catch(err){
